@@ -1,0 +1,33 @@
+<html>
+<head>
+  <title>顯示清單</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <script type="text/javascript" src="/static/jquery-1.4.js" />
+  <script type="text/javascript" src="/static/sendmail.js"></script> 
+</head>
+
+<body>
+{% if query %}
+  {% for mesg in query %}
+    
+    <div id="flash{{ mesg.id }}">
+      <div id="loadplace{{ mesg.id }}"></div>
+      <div class="name">{{ mesg.name }}您好</div>
+      <div class="email">這封信會寄給:{{ mesg.email }}</div>
+      <div class="item">信件內容:{{ mesg.item }}</div>
+      <br>
+      <div class="panel" id="slidepanel{{ mesg.id }}">
+        <input type="hidden" name="key" value="{{ mesg.key }}">
+        <button id="editMail" onclick="document.location.href='/edit/{{ mesg.id }}'">編輯信件</button>
+        <form action="" method="POST" name="{{ mesg.id }}"> 
+          <input type="submit" value="送出信件" class="sendMail" id="{{ mesg.id }}" sendto="{{ mesg.email }}" />
+        </form>
+      </div>
+    <hr>
+    </div>
+  
+  {% endfor %}
+{% endif %}
+
+</body>
+</html>
