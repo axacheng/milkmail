@@ -12,15 +12,15 @@
     
     <div id="flash{{ mesg.id }}">
       <div id="loadplace{{ mesg.id }}"></div>
-      <div class="name">{{ mesg.name }}您好</div>
-      <div class="email">這封信會寄給:{{ mesg.email }}</div>
-      <div class="item">信件內容:{{ mesg.item }}</div>
+      <div class="name">{{ mesg.Name }} 您好</div>
+      <div class="receiver">這封信會寄給:{{ mesg.Recevier }}</div>
+      <div class="present">獎品:{{ mesg.Present }}</div>
       <br>
       <div class="panel" id="slidepanel{{ mesg.id }}">
         <input type="hidden" name="key" value="{{ mesg.key }}">
         <button id="editMail" onclick="document.location.href='/edit/{{ mesg.id }}'">編輯信件</button>
-        <form action="" method="POST" name="{{ mesg.id }}"> 
-          <input type="submit" value="送出信件" class="sendMail" id="{{ mesg.id }}" sendto="{{ mesg.email }}" />
+        <form action="" method="POST" name="{{ mesg.id }}">
+          <input type="submit" value="送出信件" class="sendMail" id="{{ mesg.id }}" sendto="{{ mesg.Name }}" />
         </form>
       </div>
     <hr>
