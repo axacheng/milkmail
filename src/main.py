@@ -81,9 +81,8 @@ class SendMail(webapp.RequestHandler):
 #      return
 #    except mail.MissingBodyError:
 #      self.handle_error('You must provide a mail format.')
-#      return
-    
-    message.send() ### send mail out
+#      return    
+#    message.send() ### send mail out
 
     for mail_stat in query:
       mail_stat.MailSent = True  ### Set boolean to 'True' meant mail has been
