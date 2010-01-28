@@ -12,10 +12,11 @@
   <input type="hidden" name="key" value="{{ query.key }}">
   
   <label> Name </label><br>  
-  <div class="name"> {{ query.name }} </div>
+  <div class="name"> {{ query.Name }} </div>
+  <div class="recevier"> {{ query.Recevier }} </div>
   <br>
   <label> Content </label><br>  
-  <textarea name="item" rows="10" cols="30"> {{ query.item }} </textarea>
+  <textarea name="item" rows="10" cols="30"> {{ query.Present }} </textarea>
   <p><input type="submit" value="確定修改"></p>
 </form>
 {% endfor %}
