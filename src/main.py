@@ -63,25 +63,25 @@ class SendMail(webapp.RequestHandler):
      
     params = {'id':id, 'sender':sender, 'receiver':receiver, 'subject':subject,
               'name':name, 'present':present}   
-    try:
-      message = mail.EmailMessage()
-      message.sender = sender
-      message.to = receiver
+#    try:
+#      message = mail.EmailMessage()
+#      message.sender = sender
+#      message.to = receiver
       #message.sender = '172.19.104.250'
       #message.to = 'axanet@ms32.hinet.net'
-      message.subject = subject
-      message.html = (template.render('ui/mail_template.html', params)) 
-      message.check_initialized()
+#      message.subject = subject
+#      message.html = (template.render('ui/mail_template.html', params)) 
+#      message.check_initialized()
 
-    except mail.InvalidEmailError:
-      self.handle_error('Invalid email recipient.')
-      return
-    except mail.MissingRecipientsError:
-      self.handle_error('You must provide a recipient.')
-      return
-    except mail.MissingBodyError:
-      self.handle_error('You must provide a mail format.')
-      return
+#    except mail.InvalidEmailError:
+#      self.handle_error('Invalid email recipient.')
+#      return
+#    except mail.MissingRecipientsError:
+#      self.handle_error('You must provide a recipient.')
+#      return
+#    except mail.MissingBodyError:
+#      self.handle_error('You must provide a mail format.')
+#      return
     
     message.send() ### send mail out
 
@@ -121,7 +121,7 @@ class EditContent(webapp.RequestHandler):
     """
     key = self.request.get('key') 
     query = db_model.CsvStore.get(key)
-    query.item = self.request.get('item')
+    query.Present = self.request.get('present')
     query.put()
     self.redirect('/show')
        
