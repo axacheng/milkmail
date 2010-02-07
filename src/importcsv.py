@@ -7,13 +7,10 @@ class CsvStore(db.Model):
     MailSent = db.BooleanProperty(default = False)
     Sender = db.EmailProperty()
     Subject = db.StringProperty()
-    Activity = db.StringProperty()
-    Month = db.StringProperty()
     Recevier = db.EmailProperty()
     Name = db.StringProperty()
-    Duration = db.StringProperty()
+    Ntd = db.IntegerProperty()
     Present = db.StringProperty()
-    Publish = db.StringProperty()
     
     
 class MilkLoader(bulkloader.Loader):
@@ -23,13 +20,10 @@ class MilkLoader(bulkloader.Loader):
                                ('MailSent', bool),
                                ('Sender', str),
                                ('Subject', lambda x: unicode(x, 'utf-8')),
-                               ('Activity', lambda x: unicode(x, 'utf-8')),
-                               ('Month', str),
                                ('Recevier', str),
                                ('Name', lambda x: unicode(x, 'utf-8')),
-                               ('Duration', str),
-                               ('Present', lambda x: unicode(x, 'utf-8')),
-                               ('Publish', str),])
+                               ('Ntd', int),
+                               ('Present', lambda x: unicode(x, 'utf-8')),])
                                
 loaders = [MilkLoader]
 

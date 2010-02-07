@@ -1,0 +1,19 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Template</title>
+
+<body>
+<h2>檢視信件範本</h2>
+
+{% if query %}
+{% for query in query %}
+  {{ query.Name }}
+  {{ query.Subject }}
+  {{ query.Recevier }}
+  {{ query.Present }}
+{% endfor %}
+{% endif %}
+ 
+</body>
+</html>

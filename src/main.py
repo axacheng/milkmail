@@ -59,30 +59,31 @@ class SendMail(webapp.RequestHandler):
       receiver = result.Recevier
       subject = result.Subject
       name = result.Name
+      ntd = result.Ntd
       present = result.Present
      
     params = {'id':id, 'sender':sender, 'receiver':receiver, 'subject':subject,
-              'name':name, 'present':present}   
-#    try:
-#      message = mail.EmailMessage()
-#      message.sender = sender
-#      message.to = receiver
-      #message.sender = '172.19.104.250'
-      #message.to = 'axanet@ms32.hinet.net'
-#      message.subject = subject
-#      message.html = (template.render('ui/mail_template.html', params)) 
-#      message.check_initialized()
+              'name':name, 'ntd': ntd, 'present':present}   
+    try:
+      message = mail.EmailMessage()
+      message.sender = 'localhost'
+      message.to = receiver
+      #message.sender = sender
+      #message.to = 'gafie.huang@gmail.com'
+      message.subject = subject
+      message.html = (template.render('ui/mail_template.html', params)) 
+      message.check_initialized()
 
-#    except mail.InvalidEmailError:
-#      self.handle_error('Invalid email recipient.')
-#      return
-#    except mail.MissingRecipientsError:
-#      self.handle_error('You must provide a recipient.')
-#      return
-#    except mail.MissingBodyError:
-#      self.handle_error('You must provide a mail format.')
-#      return    
-#    message.send() ### send mail out
+    except mail.InvalidEmailError:
+      self.handle_error('Invalid email recipient.')
+      return
+    except mail.MissingRecipientsError:
+      self.handle_error('You must provide a recipient.')
+      return
+    except mail.MissingBodyError:
+      self.handle_error('You must provide a mail format.')
+      return    
+    message.send() ### send mail out
 
     for mail_stat in query:
       mail_stat.MailSent = True  ### Set boolean to 'True' meant mail has been
@@ -90,6 +91,13 @@ class SendMail(webapp.RequestHandler):
       mail_stat.put() ### commit change to db.Csvstore(aka: query) object.
 
 
+class TemplateShow(webapp.RequestHandler):
+  def get(self, id):
+    query = db_model.CsvStore.all()
+    query.filter('id =', int(id))
+    self.response.out.write(template.render('ui/review.html', {'query': query}))
+    
+    
 class EditContent(webapp.RequestHandler):
   """ Allow user can edit .csv file content with browser
   
@@ -130,6 +138,7 @@ def main():
                                   ('/show', ShowMailContent),
                                   ('/edit/(\d+)', EditContent),
                                   ('/send/(\d+)', SendMail),
+                                  ('/template/(\d+)', TemplateShow),
                                   ], debug=True)
     run_wsgi_app(app)
 

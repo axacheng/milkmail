@@ -19,6 +19,7 @@
       <div class="panel" id="slidepanel{{ mesg.id }}">
         <input type="hidden" name="key" value="{{ mesg.key }}">
         <button id="editMail" onclick="document.location.href='/edit/{{ mesg.id }}'">編輯信件</button>
+        <button id="editMail" onclick="document.location.href='/template/{{ mesg.id }}'">檢視信件範本</button>
         <form action="" method="POST" name="{{ mesg.id }}">
           <input type="submit" value="送出信件" class="sendMail" id="{{ mesg.id }}" sendto="{{ mesg.Name }}" />
         </form>

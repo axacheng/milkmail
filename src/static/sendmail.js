@@ -7,7 +7,7 @@ $(document).ready(function()
       var SendTo = element.attr("sendto");
 
       $("#flash"+Id).show();
-      $("#flash"+Id).hide().fadeIn(1500).html('<img src="/static/ajax-loader.gif" align="absmiddle"><font color="white" style="background: #ff0000"> Loading ....</font>');
+      $("#flash"+Id).hide().fadeIn(1500).html('<img src="/static/ajax-loader.gif" align="absmiddle"><font color="white" style="background: #ff0000"> Sending ....</font>');
 
   $.ajax({
     type: "POST",
