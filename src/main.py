@@ -10,7 +10,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
     
 
 class ShowMailContent(webapp.RequestHandler):
-  """ Show list of mail content to index page.
+  """ Show list of mail content to index page..
   """
   def get(self):
     """Return the query result from CsvStore model.
